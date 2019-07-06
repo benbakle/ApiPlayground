@@ -5,7 +5,6 @@ namespace ApiPlayground_WebApplication
 {
     public class ApiService : IApiService
     {
-        private readonly IApiService _api;
         private readonly IHttpClient _client;
 
 
@@ -16,9 +15,8 @@ namespace ApiPlayground_WebApplication
             RequestId = RequestId + 1;
         }
 
-        public ApiService(IApiService api, IHttpClient client)
+        public ApiService(IHttpClient client)
         {
-            _api = api;
             _client = client;
         }
 

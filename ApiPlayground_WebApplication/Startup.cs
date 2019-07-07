@@ -15,14 +15,11 @@ namespace ApiPlayground_WebApplication
             Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             Mvc(services);
             Register(services);
         }
-
-
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

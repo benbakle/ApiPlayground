@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http;
 
 namespace ApiPlayground_WebApplication
 {
@@ -10,11 +9,6 @@ namespace ApiPlayground_WebApplication
         static void Mvc(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-        }
-
-        private void Register(IServiceCollection services)
-        {
-            services.AddScoped(typeof(IHttpHandler), typeof(HttpClientHandler));
         }
     }
 }

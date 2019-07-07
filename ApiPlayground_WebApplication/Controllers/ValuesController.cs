@@ -18,18 +18,12 @@ namespace ApiPlayground_WebApplication.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> GetAsync()
+        public async Task<ActionResult<ApiResponse>> GetShows()
         {
-
             var api = new ApiService(_client);
-
-            var response = await api.FetchAsync("http://www.joelyoungband.com/api/shows");
-
-            var show = response.Shows.FirstOrDefault();
-
-            return new string[] { show.ShowID.ToString() };
+            var shows = await api.FetchAsync("http://www.joelyoungband.com/api/shows");
+            return shows;
         }
-
 
         // GET api/values/5
         [HttpGet("{id}")]

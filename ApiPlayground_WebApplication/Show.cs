@@ -9,8 +9,8 @@ namespace ApiPlayground_WebApplication
         public int VenueID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int Payment { get; set; }
+        public decimal? Payment { get; set; }
         public string Notes { get; set; }
-        public object PrivateNotes { get; set; }
+        public string PrivateNotes { get; set; }
     }
 }

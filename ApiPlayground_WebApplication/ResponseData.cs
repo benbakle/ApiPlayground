@@ -2,6 +2,6 @@
 {
     public class ResponseData
     {
-        public Show[] Show;
+        public Show[] Shows;
     }
 }

@@ -5,6 +5,6 @@ namespace ApiPlayground_WebApplication
     public class ApiResponse
     {
         public int RequestId { get; set; }
-        public List<Show> Shows{ get; set; }
+        public Show[] Shows{ get; set; }
     }
 }

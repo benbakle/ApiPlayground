@@ -14,7 +14,6 @@ namespace ApiPlayground_WebApplication
 
         private void Register(IServiceCollection services)
         {
-            services.AddScoped(typeof(IApiService), typeof(ApiService));
             services.AddScoped(typeof(IHttpHandler), typeof(HttpClientHandler));
         }
     }

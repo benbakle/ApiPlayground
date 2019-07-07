@@ -6,9 +6,7 @@ namespace ApiPlayground_WebApplication.Tests
 {
     public class TheApiService
     {
-
         private IHttpHandler _fakeClient = A.Fake<IHttpHandler>();
-        private IApiService _fakeApi = A.Fake<IApiService>();
 
         [Fact]
         public void HasARequestId()
@@ -24,7 +22,6 @@ namespace ApiPlayground_WebApplication.Tests
             api.RequestId = -1;
             var response = await api.FetchAsync("");
             Assert.Equal(0, response.RequestId);
-
         }
 
         [Fact]
@@ -39,6 +36,7 @@ namespace ApiPlayground_WebApplication.Tests
         public async Task GivenTheCallReturnsSuccessfully_ReturnsTheDataAsAnApiResponse()
         {
             var result = new ApiResponse { RequestId = 1 };
+            var _fakeApi = A.Fake<ApiService>();
             A.CallTo(() => _fakeApi.FetchAsync("")).Returns(Task.FromResult(result));
 
             var response = await _fakeApi.FetchAsync("");

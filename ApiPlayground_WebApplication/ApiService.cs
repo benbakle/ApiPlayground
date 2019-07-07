@@ -1,11 +1,13 @@
-﻿using System.Net.Http;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ApiPlayground_WebApplication
 {
     public class ApiService : IApiService
     {
-        private readonly IHttpClient _client;
+        private readonly IHttpHandler _client;
 
 
         public int RequestId { get; set; } = -1;
@@ -15,7 +17,7 @@ namespace ApiPlayground_WebApplication
             RequestId = RequestId + 1;
         }
 
-        public ApiService(IHttpClient client)
+        public ApiService(IHttpHandler client)
         {
             _client = client;
         }
@@ -28,8 +30,10 @@ namespace ApiPlayground_WebApplication
             HttpResponseMessage message = await _client.GetAsync(path);
             if (message.IsSuccessStatusCode)
             {
-                //response = await message.Content.ReadAsAsync<ApiResponse>();
+                var data = await message.Content.ReadAsAsync<List<Show>>();
+                var shows = JsonConvert.DeserializeObject<List<Show>>(data.ToString());
                 response.RequestId = RequestId;
+                response.Shows = shows;
             }
 
             return response;

@@ -10,12 +10,26 @@ namespace ApiPlayground_WebApplication.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IHttpHandler _client;
+        public ValuesController(IHttpHandler client)
+        {
+            _client = client;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> GetAsync()
         {
-            return new string[] { "value1", "value2" };
+
+            var api = new ApiService(_client);
+
+            var response = await api.FetchAsync("http://www.joelyoungband.com/api/shows");
+
+            var show = response.Shows.FirstOrDefault();
+
+            return new string[] { show.ShowID.ToString() };
         }
+
 
         // GET api/values/5
         [HttpGet("{id}")]
@@ -42,4 +56,10 @@ namespace ApiPlayground_WebApplication.Controllers
         {
         }
     }
+
+    public class Shows
+    {
+        public string Venue { get; set; }
+    }
+
 }

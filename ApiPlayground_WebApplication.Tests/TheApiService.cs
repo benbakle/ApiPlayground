@@ -8,7 +8,7 @@ namespace ApiPlayground_WebApplication.Tests
     public class TheApiService
     {
 
-        private IHttpClient _fakeClient = A.Fake<IHttpClient>();
+        private IHttpHandler _fakeClient = A.Fake<IHttpHandler>();
         private IApiService _fakeApi = A.Fake<IApiService>();
 
         [Fact]

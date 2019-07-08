@@ -8,7 +8,7 @@ namespace ApiPlayground_WebApplication
 {
     public class ApiService
     {
-        private readonly IHttpHandler _client;
+        private readonly IHttpHandler _httpClient;
 
 
         public int RequestId { get; set; } = -1;
@@ -18,9 +18,9 @@ namespace ApiPlayground_WebApplication
             RequestId = RequestId + 1;
         }
 
-        public ApiService(IHttpHandler client)
+        public ApiService(IHttpHandler httpClient)
         {
-            _client = client;
+            _httpClient = httpClient;
         }
 
         public virtual async Task<ApiResponse> FetchAsync(string path)
@@ -28,12 +28,12 @@ namespace ApiPlayground_WebApplication
             IncrementRequestId();
             var response = new ApiResponse { RequestId = RequestId };
 
-            HttpResponseMessage message = await _client.GetAsync(path);
+            HttpResponseMessage message = await _httpClient.GetAsync(path);
             if (message.IsSuccessStatusCode)
             {
-                //var data = await message.Content.ReadAsAsync<Show[]>();
-                //response.RequestId = RequestId;
-                //response.Shows = data.Where(s=> s.StartDate >= DateTime.Now).OrderBy(s=>s.StartDate).ToArray();
+                var data = await message.Content.ReadAsAsync<Show[]>();
+                response.RequestId = RequestId;
+                response.Shows = data.Where(s => s.StartDate >= DateTime.Now).OrderBy(s => s.StartDate).ToArray();
             }
 
                 return response;

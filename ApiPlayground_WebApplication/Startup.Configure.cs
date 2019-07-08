@@ -17,5 +17,16 @@ namespace ApiPlayground_WebApplication
                 app.UseHsts();
             }
         }
+
+        static void Swagger(IApplicationBuilder app)
+        {
+            app.UseSwagger(c => c.RouteTemplate = @"api/{documentName}/metadata");
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/api/v1/metadata", "PSI");
+                c.RoutePrefix = "api/docs";
+                c.InjectJavascript("/scripts/autoAuth.js");
+            });
+        }
     }
 }

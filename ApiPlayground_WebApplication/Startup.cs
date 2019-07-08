@@ -26,10 +26,10 @@ namespace ApiPlayground_WebApplication
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            Swagger(app);
             HandleExceptions(app, env);
             app.UseHttpsRedirection();
             app.UseMvc();
+            Swagger(app);
         }
 
     }

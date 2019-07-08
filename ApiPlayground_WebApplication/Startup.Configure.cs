@@ -25,7 +25,7 @@ namespace ApiPlayground_WebApplication
             {
                 c.SwaggerEndpoint("/api/v1/metadata", "PSI");
                 c.RoutePrefix = "api/docs";
-                c.InjectJavascript("/scripts/autoAuth.js");
+                //c.InjectJavascript("/scripts/autoAuth.js");
             });
         }
     }

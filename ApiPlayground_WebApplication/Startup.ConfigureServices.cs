@@ -16,7 +16,10 @@ namespace ApiPlayground_WebApplication
         {
             services.AddSwaggerGen(c =>
                 {
-                    c.SwaggerDoc("v1", new Info { Title = "PSI.ZDD", Version = "v1" });
+                    c.SwaggerDoc("v1", new Info {
+                        Title = "PSI.ZDD",
+                        Version = "v1"
+                    });
 
                     //c.IncludeXmlComments(AppDomain.CurrentDomain.BaseDirectory + "api.doc.xml");
                     //c.AddSecurityDefinition("Bearer", new ApiKeyScheme
